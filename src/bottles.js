@@ -1,3 +1,5 @@
+const container = number => (number === 1 ? "bottle" : "bottles");
+
 export const verse = number => {
   switch (number) {
     case 0:
@@ -12,17 +14,12 @@ export const verse = number => {
         `Take it down and pass it around, no more bottles of beer on the wall.\n`
       );
       break;
-    case 2:
-      return (
-        `2 bottles of beer on the wall, 2 bottles of beer.\n` +
-        `Take one down and pass it around, 1 bottle of beer on the wall.\n`
-      );
-      break;
     default:
       return (
         `${number} bottles of beer on the wall, ${number} bottles of beer.\n` +
-        `Take one down and pass it around, ${number -
-          1} bottles of beer on the wall.\n`
+        `Take one down and pass it around, ${number - 1} ${container(
+          number - 1
+        )} of beer on the wall.\n`
       );
   }
 };
