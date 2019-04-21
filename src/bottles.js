@@ -1,27 +1,29 @@
 const container = number => (number === 1 ? "bottle" : "bottles");
 
+const quantity = number => (number === 0 ? "no more" : number.toString());
+
+const pronoun = number => (number === 1 ? "it" : "one");
+
+const action = number =>
+  number === 0
+    ? "Go to the store and buy some more"
+    : `Take ${pronoun(number)} down and pass it around`;
+
+const successor = number => (number === 0 ? 99 : number - 1);
+
+const capitalise = string => string.charAt(0).toUpperCase() + string.slice(1);
+
 export const verse = number => {
-  switch (number) {
-    case 0:
-      return (
-        `No more bottles of beer on the wall, no more bottles of beer.\n` +
-        `Go to the store and buy some more, 99 bottles of beer on the wall.\n`
-      );
-      break;
-    case 1:
-      return (
-        `1 bottle of beer on the wall, 1 bottle of beer.\n` +
-        `Take it down and pass it around, no more bottles of beer on the wall.\n`
-      );
-      break;
-    default:
-      return (
-        `${number} bottles of beer on the wall, ${number} bottles of beer.\n` +
-        `Take one down and pass it around, ${number - 1} ${container(
-          number - 1
-        )} of beer on the wall.\n`
-      );
-  }
+  return (
+    `${capitalise(quantity(number))} ${container(
+      number
+    )} of beer on the wall, ` +
+    `${quantity(number)} ${container(number)} of beer.\n` +
+    `${action(number)}, ` +
+    `${quantity(successor(number))} ${container(
+      successor(number)
+    )} of beer on the wall.\n`
+  );
 };
 
 export const verses = (start = 99, end = 0) => {
